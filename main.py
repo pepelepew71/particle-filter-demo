@@ -12,22 +12,21 @@ import utilities
 if __name__ == "__main__":
 
     # -- noise (sigma)
-    noise_forward = 0.05
-    noise_turn = 0.05
-    noise_sensor = 5.0
+    noise_f = 0.05
+    noise_t = 0.05
+    noise_s = 5.0
 
     # -- real robot
     robot = Robot()
-    # robot.set(x=50, y=50, orientation=0)
-    robot.set_noise(noise_forward=noise_forward, noise_turn=noise_turn, noise_sensor=noise_sensor)
+    robot.set_noise(noise_forward=noise_f, noise_turn=noise_t, noise_sensor=noise_s)
 
     # -- set particles
-    N = 1000
+    n = 1000
     particles = []
 
-    for _ in range(N):
+    for _ in range(n):
         p = Robot()
-        p.set_noise(noise_forward=noise_forward, noise_turn=noise_turn, noise_sensor=noise_sensor)
+        p.set_noise(noise_forward=noise_f, noise_turn=noise_t, noise_sensor=noise_s)
         particles.append(p)
 
     # -- gui

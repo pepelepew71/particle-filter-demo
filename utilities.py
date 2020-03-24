@@ -2,45 +2,8 @@ from copy import copy
 import math
 import random
 
-import matplotlib.pyplot as plt
-
 from config import *
 from robot import Robot
-
-def plot(robot, particles):
-
-    ax = plt.gca()
-    ax.cla()
-
-    # -- particles
-    x = list()
-    y = list()
-    markers = list()
-    for i in particles:
-        x.append(i.x)
-        y.append(i.y)
-        markers = (3, 1, i.orientation / math.pi * 180.0)
-    ax.scatter(x, y, s=30, marker=markers, edgecolors='r', facecolors='none', alpha=0.1)
-
-    # -- landmarks
-    x = list()
-    y = list()
-    for mark in LANDMARKS:
-        x.append(mark[0])
-        y.append(mark[1])
-    ax.scatter(x, y, s=30, marker='+', c='g')
-
-    # -- robot
-    marker_rotated_deg = robot.orientation/math.pi*180.0 - 90
-    ax.scatter(robot.x, robot.y, s=100, marker=(3, 0, marker_rotated_deg), edgecolors='b', facecolors='none')
-    ax.scatter(robot.x+2.0*math.cos(robot.orientation), robot.y+2.0*math.sin(robot.orientation), s=10, marker="o", c='b')  # for heading
-
-    ax.set_xlim(left=0, right=100)
-    ax.set_ylim(bottom=0, top=100)
-    ax.set_aspect('equal', 'box')
-
-    plt.pause(0.2)
-    # plt.show()
 
 def get_mean_error(r, p):
     sum = 0.0;
