@@ -11,7 +11,7 @@ class Robot:
         self.x = random.random()*WORLD_SIZE
         self.y = random.random()*WORLD_SIZE
         self.orientation = random.random()*2.0*math.pi
-        self.noise_forward = 0.0 # sigma
+        self.noise_forward = 0.0  # sigma
         self.noise_turn = 0.0
         self.noise_sensor = 0.0
 
