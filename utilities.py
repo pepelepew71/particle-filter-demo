@@ -39,3 +39,7 @@ def resampling(weights, particles, is_add_random=False, random_num=100):
             samples.append(p)
 
     return samples
+
+def get_gaussian(mu, sigma, x):
+    # -- calculates the probability of x for 1-dim Gaussian with mean mu and var. sigma
+    return math.exp(- ((mu - x)**2) / (sigma**2) / 2.0) / math.sqrt(2.0*math.pi*(sigma**2.0))

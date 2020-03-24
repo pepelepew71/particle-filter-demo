@@ -3,6 +3,7 @@ import math
 import random
 
 from config import *
+import utilities
 
 
 class Robot:
@@ -60,16 +61,12 @@ class Robot:
         self.x %= WORLD_SIZE  # cyclic truncate
         self.y %= WORLD_SIZE
 
-    def get_gaussian(self, mu, sigma, x):
-        # -- calculates the probability of x for 1-dim Gaussian with mean mu and var. sigma
-        return math.exp(- ((mu - x)**2) / (sigma**2) / 2.0) / math.sqrt(2.0*math.pi*(sigma**2.0))
-
     def get_measurements_likelihood(self, measurements):
         # -- calculates how likely a measurement should be
         prob = 1.0;
         for landmark, x in zip(LANDMARKS, measurements):
             dist = math.sqrt((self.x - landmark[0])**2.0 + (self.y - landmark[1])**2.0)
-            prob *= self.get_gaussian(dist, self.noise_sensor, x)
+            prob *= utilities.get_gaussian(dist, self.noise_sensor, x)
         return prob
 
     def __repr__(self):
